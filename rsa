@@ -1,0 +1,42 @@
+#!/ussr/bin/python3
+"""
+Factorize as many numbers as possible into a product of two smaller numbers.
+    Usage: factors <file>
+        where <file> is a file containing natural numbers to factor.
+        One number per line
+        You can assume that all lines will be valid natural numbers\
+                greater than 1
+        You can assume that there will be no empy line, and no space\
+                before and after the valid number
+        The file will always end with a new line
+    Output format: n=p*q
+        one factorization per line
+        p and q don’t have to be prime numbers
+        """
+
+import sys
+
+def fc():
+    """function fc to search file to convert number and format n=p*q"""
+    try:
+        revfile = sys.argv[1]
+        with open(revfile) as f:
+            for number in f:
+                number = int(number)
+                if number % 2 == 0:
+                        print("{}={}*{}".format(number, number // 2, 2))
+                        continue
+                i = 3
+                while i < number // 2:
+                    if number % i == 0:
+                        print("{}={}*{}".format(number, number // i, i))
+                        break
+                    i = i + 2
+                if i == (number // 2) + 1:
+                    print("{}={}*{}".format(number, number, 1))
+    except (IndexError):
+        pass
+
+
+"""autostart"""
+fc()
